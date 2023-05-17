@@ -11,7 +11,6 @@ class SpaceRepository {
   Future<List<Space>> getAll() async {
     List res = await Supabase.instance.client.from('profiles').select('space!space_participants(id, name)').eq("id", Supabase.instance.client.auth.currentUser!.id);
     res = res[0]['space'];
-    print(res);
     return res.map<Space>((e) => Space.fromMap(e)).toList();
   }
 

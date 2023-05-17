@@ -7,8 +7,8 @@ class DevPage extends StatelessWidget {
   const DevPage({super.key});
 
   Future f() async {
-    final data = await Supabase.instance.client.from('profiles').select('space!space_participants(id, name)').eq("id", Supabase.instance.client.auth.currentUser!.id);
-    print(data.runtimeType);
+    final data = await Supabase.instance.client.from('song_suggestion').select('id, song_title, artist, cover_image, spotify_link').eq("space_id", '902ef23c-f46f-42c2-84f2-eab3bf0a26dc');
+    print(data);
   }
 
   @override
@@ -30,6 +30,10 @@ class DevPage extends StatelessWidget {
           TextButton(
             onPressed: () => Get.toNamed(Routes.HOME),
             child: Text(Routes.HOME),
+          ),
+          TextButton(
+            onPressed: () => Get.toNamed(Routes.SPACE),
+            child: Text(Routes.SPACE),
           ),
         ],
       ),

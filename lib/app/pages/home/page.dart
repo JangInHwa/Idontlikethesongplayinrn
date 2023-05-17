@@ -13,7 +13,10 @@ class HomePage extends GetView<HomePageController> {
         () => ListView.builder(
           itemCount: controller.spacesController.spaces.length,
           itemBuilder: (context, index) {
-            return TextButton(onPressed: () {}, child: Text(controller.spacesController.spaces[index].name));
+            return TextButton(
+              onPressed: () => controller.enterSpace(controller.spacesController.spaces[index]),
+              child: Text(controller.spacesController.spaces[index].name),
+            );
           },
         ),
       ),
