@@ -5,11 +5,13 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class LoginPageController {
   Future loginWithGoogle() async {
     try {
+      await Supabase.instance.client.auth.signOut();
       await Supabase.instance.client.auth.signInWithOAuth(
         Provider.google,
         authScreenLaunchMode: LaunchMode.externalApplication,
         redirectTo: 'com.uglyonlytoday.idontlikethesongplayinrn://login-callback/',
       );
+      print(Supabase.instance.client.auth.currentSession);
       Get.back();
     } on AuthException catch (e) {
       log(e.toString());
