@@ -16,7 +16,11 @@ class SpacePage extends GetView<SpacePageController> {
               () => ListView.builder(
                 itemCount: controller.songSuggestionsController.songSuggestions.length,
                 itemBuilder: (context, index) {
-                  return TextButton(onPressed: () {}, child: Text(controller.songSuggestionsController.songSuggestions[index].songTitle));
+                  return ListTile(
+                    leading: Image.network(controller.songSuggestionsController.songSuggestions[index].coverImage),
+                    title: Text(controller.songSuggestionsController.songSuggestions[index].songTitle),
+                    subtitle: Text(controller.songSuggestionsController.songSuggestions[index].artist),
+                  );
                 },
               ),
             ),
