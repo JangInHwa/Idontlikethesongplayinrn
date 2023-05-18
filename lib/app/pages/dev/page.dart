@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/spotify_song/repository.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/routes/pages.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DevPage extends StatelessWidget {
   const DevPage({super.key});
@@ -28,6 +29,10 @@ class DevPage extends StatelessWidget {
           TextButton(
             onPressed: () => Get.toNamed(Routes.LOGIN),
             child: Text(Routes.LOGIN),
+          ),
+          TextButton(
+            onPressed: () => Supabase.instance.client.auth.signOut(),
+            child: Text('logout'),
           ),
           TextButton(
             onPressed: () => Get.toNamed(Routes.HOME),
