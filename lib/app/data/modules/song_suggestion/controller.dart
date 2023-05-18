@@ -8,7 +8,7 @@ import 'package:i_dont_like_the_song_playin_rn/app/data/modules/song_suggestion/
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/space/model.dart';
 
 class SongSuggestionsController extends BaseController {
-  SongSuggestionRepository repository;
+  SongSuggestionRepository songSuggestionRepository;
   final Rx<List<SongSuggestion>> _songSuggestions = Rx([]);
   StreamSubscription<List<SongSuggestion>>? _songSuggestionsStream;
 
@@ -19,23 +19,26 @@ class SongSuggestionsController extends BaseController {
   SongSuggestionsController(
     this._space, {
     SongSuggestionRepository? repository,
-  }) : repository = repository ?? SongSuggestionRepository();
+  }) : songSuggestionRepository = repository ?? SongSuggestionRepository();
+
+  Future init() async {
+    _songSuggestionsStream = songSuggestionRepository.getStream(_space.id).listen((event) => ());
+
+    _songSuggestionsStream!.onData(_onStreamData);
+    _songSuggestionsStream!.onError(_onStreamError);
+  }
+
+  Future insertSongSuggestion(SongSuggestionBase newSongSuggestion) async {
+    await songSuggestionRepository.insert(newSongSuggestion);
+  }
 
   void _onStreamData(List<SongSuggestion> songSuggestions) {
-    print('ok');
     state.value = ControllerState.success;
     _songSuggestions.value = songSuggestions;
   }
 
   void _onStreamError(Object e) {
     state.value = ControllerState.failed;
-  }
-
-  Future init() async {
-    _songSuggestionsStream = repository.getStream(_space.id).listen((event) => ());
-
-    _songSuggestionsStream!.onData(_onStreamData);
-    _songSuggestionsStream!.onError(_onStreamError);
   }
 
   @override

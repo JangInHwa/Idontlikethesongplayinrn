@@ -30,13 +30,11 @@ class SpacesController extends BaseController {
 
 class SpaceController extends BaseController {
   final SpaceRepository repository;
-  final Space _space;
-  final Rx<List<SongSuggestion>> _songSuggestions = Rx([]);
-
-  Space get space => _space;
+  final Space space;
+  final Rx<List<SongSuggestionBase>> _songSuggestions = Rx([]);
 
   SpaceController(
-    this._space, {
+    this.space, {
     SpaceRepository? repository,
   }) : repository = repository ?? SpaceRepository();
 

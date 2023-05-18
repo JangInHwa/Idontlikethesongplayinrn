@@ -21,7 +21,10 @@ class SpacePage extends GetView<SpacePageController> {
               ),
             ),
           ),
-          TextButton(onPressed: () {}, child: Text('add song')),
+          TextButton(
+            onPressed: controller.openSongSelectSheet,
+            child: Text('add song'),
+          ),
         ],
       ),
     );
