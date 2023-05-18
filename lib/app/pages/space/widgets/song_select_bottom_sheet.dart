@@ -46,12 +46,11 @@ class SongSelectBottomSheet extends StatelessWidget {
 class SongSelectBottomSheetController extends GetxController {
   TextEditingController searchTextFieldController = TextEditingController();
   SpotifyRepository spotifyRepository = SpotifyRepository();
-  Rx<List<SpotifySong>> _songList = Rx([]);
+  final Rx<List<SpotifySong>> _songList = Rx([]);
   List<SpotifySong> get songList => _songList.value;
 
   Future searchSpotify(String keyword) async {
     _songList.value = await spotifyRepository.searchSong(keyword);
-    print(_songList);
     _songList.refresh();
   }
 }

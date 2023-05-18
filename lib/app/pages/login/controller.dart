@@ -11,7 +11,6 @@ class LoginPageController {
         authScreenLaunchMode: LaunchMode.externalApplication,
         redirectTo: 'com.uglyonlytoday.idontlikethesongplayinrn://login-callback/',
       );
-      print(Supabase.instance.client.auth.currentSession);
       Get.back();
     } on AuthException catch (e) {
       log(e.toString());
