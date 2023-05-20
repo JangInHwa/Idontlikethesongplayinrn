@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.VIBRATE" />
     <application
         android:label="i_dont_like_the_song_playin_rn"
         android:name="${applicationName}"

@@ -24,6 +24,7 @@ class SongSuggestionBase {
 
 class SongSuggestion extends SongSuggestionBase {
   final String id;
+  final String profileId;
 
   SongSuggestion({
     required this.id,
@@ -32,10 +33,12 @@ class SongSuggestion extends SongSuggestionBase {
     required super.coverImage,
     required super.spotifyLink,
     required super.spaceId,
+    required this.profileId,
   });
 
   SongSuggestion.fromMap(
     super.data,
   )   : id = data['id'],
+        profileId = data['profile_id'],
         super.fromMap();
 }

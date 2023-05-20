@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/spotify_song/model.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/spotify_song/repository.dart';
+import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/song_search_item.dart';
+import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/song_search_textfield.dart';
 
 class SongSelectBottomSheet extends StatelessWidget {
   final SongSelectBottomSheetController controller;
@@ -12,33 +14,59 @@ class SongSelectBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          const SizedBox(height: 20),
-          TextField(
-            onSubmitted: controller.searchSpotify,
-            controller: controller.searchTextFieldController,
-          ),
-          SizedBox(
-            height: 400,
-            child: Obx(
-              () => ListView.builder(
-                itemCount: controller.songList.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: Image.network(controller.songList[index].coverImage),
-                    title: Text(controller.songList[index].name),
-                    subtitle: Text(controller.songList[index].artist),
-                    onTap: () => Get.back(result: controller.songList[index]),
-                  );
-                },
-              ),
+    return DraggableScrollableSheet(
+      expand: false,
+      initialChildSize: 0.8,
+      maxChildSize: 0.8,
+      minChildSize: 0.2,
+      snapAnimationDuration: Duration(milliseconds: 200),
+      snapSizes: [0.8],
+      snap: true,
+      builder: (context, scrollController) {
+        return Container(
+          decoration: const BoxDecoration(
+            color: Color(0xFF1B1D22),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
             ),
           ),
-        ],
-      ),
+          height: MediaQuery.of(context).size.height * 0.8,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 10),
+                child: SongSearchTextField(
+                  controller: controller.searchTextFieldController,
+                  onSubmitted: controller.searchSpotify,
+                ),
+              ),
+              Expanded(
+                child: NotificationListener<ScrollUpdateNotification>(
+                  onNotification: (notification) {
+                    FocusManager.instance.primaryFocus?.unfocus();
+
+                    return true;
+                  },
+                  child: Obx(
+                    () => ListView.builder(
+                      physics: ClampingScrollPhysics(),
+                      controller: scrollController,
+                      itemCount: controller.songList.length,
+                      itemBuilder: (context, index) {
+                        return SongSearchItem(
+                          controller.songList[index],
+                          onTap: (song) => Get.back(result: song),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

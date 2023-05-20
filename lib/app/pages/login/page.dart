@@ -9,7 +9,7 @@ class LogInPage extends GetView<LoginPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff0A0C0F),
+      backgroundColor: const Color(0xff0A0C0F),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),

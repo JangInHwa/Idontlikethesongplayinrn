@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/song_suggestion/controller.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/song_suggestion/model.dart';
@@ -17,13 +18,25 @@ class SpacePageController extends GetxController {
   }
 
   Future openSongSelectSheet() async {
-    SpotifySong? selectedSong = await Get.bottomSheet(
-      SongSelectBottomSheet(),
-      backgroundColor: Colors.white,
+    HapticFeedback.selectionClick();
+    SongSelectBottomSheetController controller = SongSelectBottomSheetController();
+    SpotifySong? selectedSong = await showModalBottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
+      context: Get.context!,
+      enableDrag: true,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => SongSelectBottomSheet(controller: controller),
     );
+    // SpotifySong? selectedSong = await Get.bottomSheet(
+    //   enterBottomSheetDuration: Duration(milliseconds: 200),
+    //   SongSelectBottomSheet(),
+    //   shape: RoundedRectangleBorder(
+    //     borderRadius: BorderRadius.circular(20),
+    //   ),
+    // );
 
     if (selectedSong == null) {
       return;

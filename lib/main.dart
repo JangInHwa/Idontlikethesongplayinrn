@@ -16,6 +16,9 @@ Future main() async {
       initialRoute: Routes.DEV,
       getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.dark,
+      ),
     ),
   );
 }
