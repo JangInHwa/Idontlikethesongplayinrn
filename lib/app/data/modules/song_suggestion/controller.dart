@@ -21,11 +21,13 @@ class SongSuggestionsController extends BaseController {
     SongSuggestionRepository? repository,
   }) : songSuggestionRepository = repository ?? SongSuggestionRepository();
 
-  Future init() async {
-    _songSuggestionsStream = songSuggestionRepository.getStream(_space.id).listen((event) => ());
-
+  Future<SongSuggestionsController> init() async {
+    _songSuggestionsStream = songSuggestionRepository.getStream(_space.id).listen(null);
     _songSuggestionsStream!.onData(_onStreamData);
     _songSuggestionsStream!.onError(_onStreamError);
+
+    _songSuggestions.value = await songSuggestionRepository.getStream(_space.id).first;
+    return this;
   }
 
   Future insertSongSuggestion(SongSuggestionBase newSongSuggestion) async {

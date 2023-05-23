@@ -16,14 +16,14 @@ class SongSearchItem extends StatelessWidget {
       },
       child: Container(
         color: const Color(0xFF1B1D22),
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Row(
           children: [
             ClipRRect(
-              child: Image.network(song.coverImage, width: 48),
               borderRadius: BorderRadius.circular(6),
+              child: Image.network(song.coverImage, width: 48),
             ),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             Flexible(
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,13 +31,13 @@ class SongSearchItem extends StatelessWidget {
                 Text(
                   song.name,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   song.artist,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Colors.white60, fontSize: 12),
+                  style: const TextStyle(color: Colors.white60, fontSize: 12),
                 ),
               ],
             ))

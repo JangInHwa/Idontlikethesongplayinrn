@@ -19,8 +19,8 @@ class SongSelectBottomSheet extends StatelessWidget {
       initialChildSize: 0.8,
       maxChildSize: 0.8,
       minChildSize: 0.2,
-      snapAnimationDuration: Duration(milliseconds: 200),
-      snapSizes: [0.8],
+      snapAnimationDuration: const Duration(milliseconds: 200),
+      snapSizes: const [0.8],
       snap: true,
       builder: (context, scrollController) {
         return Container(
@@ -50,7 +50,7 @@ class SongSelectBottomSheet extends StatelessWidget {
                   },
                   child: Obx(
                     () => ListView.builder(
-                      physics: ClampingScrollPhysics(),
+                      physics: const ClampingScrollPhysics(),
                       controller: scrollController,
                       itemCount: controller.songList.length,
                       itemBuilder: (context, index) {

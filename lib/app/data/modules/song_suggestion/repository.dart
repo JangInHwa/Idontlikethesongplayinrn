@@ -26,7 +26,7 @@ class SongSuggestionRepository {
       'song_title': newSongSuggestion.songTitle,
       'artist': newSongSuggestion.artist,
       'cover_image': newSongSuggestion.coverImage,
-      'spotify_link': newSongSuggestion.spotifyLink,
+      'spotify_id': newSongSuggestion.spotifyId,
       'space_id': newSongSuggestion.spaceId,
     });
   }

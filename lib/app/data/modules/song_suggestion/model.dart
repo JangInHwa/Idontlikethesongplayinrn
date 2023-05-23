@@ -2,14 +2,14 @@ class SongSuggestionBase {
   final String songTitle;
   final String artist;
   final String coverImage;
-  final String spotifyLink;
+  final String spotifyId;
   final String spaceId;
 
   SongSuggestionBase({
     required this.songTitle,
     required this.artist,
     required this.coverImage,
-    required this.spotifyLink,
+    required this.spotifyId,
     required this.spaceId,
   });
 
@@ -18,7 +18,7 @@ class SongSuggestionBase {
   )   : songTitle = data['song_title'],
         artist = data['artist'],
         coverImage = data['cover_image'],
-        spotifyLink = data['spotify_link'],
+        spotifyId = data['spotify_id'],
         spaceId = data['space_id'];
 }
 
@@ -31,7 +31,7 @@ class SongSuggestion extends SongSuggestionBase {
     required super.songTitle,
     required super.artist,
     required super.coverImage,
-    required super.spotifyLink,
+    required super.spotifyId,
     required super.spaceId,
     required this.profileId,
   });

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/pages/space/controller.dart';
+import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/song_indicator.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/song_suggestion_item.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -10,6 +11,7 @@ class SpacePage extends GetView<SpacePageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xff0A0C0F),
       appBar: AppBar(
         title: Text(controller.spaceController.space.name),
@@ -20,14 +22,17 @@ class SpacePage extends GetView<SpacePageController> {
       body: Column(
         children: [
           Expanded(
-            child: Obx(
-              () => Container(
-                child: ListView(
-                  reverse: true,
-                  padding: const EdgeInsets.only(top: 20),
-                  children: controller.songSuggestionsController.songSuggestions.map((e) => SongSuggestionItem(e)).toList().reversed.toList(),
+            child: Stack(
+              children: [
+                Obx(
+                  () => ListView(
+                    reverse: true,
+                    padding: const EdgeInsets.only(top: 100),
+                    children: controller.songSuggestionsController.songSuggestions.map((e) => SongSuggestionItem(e)).toList().reversed.toList(),
+                  ),
                 ),
-              ),
+                Positioned.directional(top: 0, start: 12, end: 12, textDirection: TextDirection.ltr, child: SongIndicator()),
+              ],
             ),
           ),
           Container(
