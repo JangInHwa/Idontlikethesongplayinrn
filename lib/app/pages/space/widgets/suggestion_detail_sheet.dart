@@ -11,7 +11,7 @@ class SuggestionDetailSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 24, bottom: 56),
-      decoration: const BoxDecoration(color: Color(0xFf22242A), borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+      decoration: const BoxDecoration(color: Color(0xFF1B1D22), borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))),
       child: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -21,7 +21,7 @@ class SuggestionDetailSheet extends StatelessWidget {
             GestureDetector(
               onTap: () => launchUrl(Uri.parse('https://open.spotify.com/track/${suggestion.spotifyId}'), mode: LaunchMode.externalApplication),
               child: Container(
-                color: const Color(0xFf22242A),
+                color: const Color(0xFF1B1D22),
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
