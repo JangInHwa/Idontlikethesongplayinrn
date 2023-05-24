@@ -26,6 +26,15 @@ class SpacesController extends BaseController {
     state.value = ControllerState.success;
     return res;
   }
+
+  Future<void> joinSpace(Space space) async {
+    if (spaces.any((e) => e.id == space.id)) {
+      return;
+    }
+    await repository.join(space);
+    _spaces.value.add(space);
+    _spaces.refresh();
+  }
 }
 
 class SpaceController extends BaseController {

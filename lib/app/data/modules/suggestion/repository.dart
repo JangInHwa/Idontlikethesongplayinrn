@@ -9,7 +9,7 @@ class SuggestionRepository {
   }) : supabase = supabaseClient ?? Supabase.instance.client;
 
   Future<List<Suggestion>> get(String spaceId) async {
-    List res = await supabase.from('song_suggestion').select('id, song_title, artist, cover_image, spotify_link, profile_id').eq("space_id", spaceId);
+    List res = await supabase.from('song_suggestion').select().eq("space_id", spaceId);
     return res.map<Suggestion>((e) => Suggestion.fromMap(e)).toList();
   }
 
