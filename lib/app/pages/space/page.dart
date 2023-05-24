@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/pages/space/controller.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/song_indicator.dart';
-import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/song_suggestion_item.dart';
+import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/suggestion_item.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class SpacePage extends GetView<SpacePageController> {
