@@ -5,12 +5,12 @@ import 'package:i_dont_like_the_song_playin_rn/app/data/modules/spotify_song/rep
 import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/song_search_item.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/song_search_textfield.dart';
 
-class SongSelectBottomSheet extends StatelessWidget {
-  final SongSelectBottomSheetController controller;
-  SongSelectBottomSheet({
+class SongSelectSheet extends StatelessWidget {
+  final SongSelectSheetController controller;
+  SongSelectSheet({
     super.key,
-    SongSelectBottomSheetController? controller,
-  }) : controller = controller ?? SongSelectBottomSheetController();
+    SongSelectSheetController? controller,
+  }) : controller = controller ?? SongSelectSheetController();
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class SongSelectBottomSheet extends StatelessWidget {
   }
 }
 
-class SongSelectBottomSheetController extends GetxController {
+class SongSelectSheetController extends GetxController {
   TextEditingController searchTextFieldController = TextEditingController();
   SpotifyRepository spotifyRepository = SpotifyRepository();
   final Rx<List<SpotifySong>> _songList = Rx([]);

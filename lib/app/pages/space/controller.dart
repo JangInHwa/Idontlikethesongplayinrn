@@ -6,7 +6,7 @@ import 'package:i_dont_like_the_song_playin_rn/app/data/modules/suggestion/contr
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/suggestion/model.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/space/controller.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/spotify_song/model.dart';
-import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/song_select_bottom_sheet.dart';
+import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/song_select_sheet.dart';
 
 class SpacePageController extends GetxController {
   SuggestionsController suggestionsController = Get.find<SuggestionsController>();
@@ -27,7 +27,7 @@ class SpacePageController extends GetxController {
 
   Future openSongSelectSheet() async {
     HapticFeedback.selectionClick();
-    SongSelectBottomSheetController controller = SongSelectBottomSheetController();
+    SongSelectSheetController controller = SongSelectSheetController();
     SpotifySong? selectedSong = await showModalBottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
@@ -36,7 +36,7 @@ class SpacePageController extends GetxController {
       enableDrag: true,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => SongSelectBottomSheet(controller: controller),
+      builder: (context) => SongSelectSheet(controller: controller),
     );
 
     if (selectedSong == null) {
