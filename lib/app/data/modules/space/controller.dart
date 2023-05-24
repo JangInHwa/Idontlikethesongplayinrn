@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/core/base/base_controller.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/core/enums/controller_state.dart';
-import 'package:i_dont_like_the_song_playin_rn/app/data/modules/song_suggestion/model.dart';
+import 'package:i_dont_like_the_song_playin_rn/app/data/modules/suggestion/model.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/space/model.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/space/repository.dart';
 
@@ -31,7 +31,7 @@ class SpacesController extends BaseController {
 class SpaceController extends BaseController {
   final SpaceRepository repository;
   final Space space;
-  final Rx<List<SongSuggestionBase>> _songSuggestions = Rx([]);
+  final Rx<List<SuggestionBase>> _suggestions = Rx([]);
 
   SpaceController(
     this.space, {

@@ -1,11 +1,11 @@
-class SongSuggestionBase {
+class SuggestionBase {
   final String songTitle;
   final String artist;
   final String coverImage;
   final String spotifyId;
   final String spaceId;
 
-  SongSuggestionBase({
+  SuggestionBase({
     required this.songTitle,
     required this.artist,
     required this.coverImage,
@@ -13,7 +13,7 @@ class SongSuggestionBase {
     required this.spaceId,
   });
 
-  SongSuggestionBase.fromMap(
+  SuggestionBase.fromMap(
     Map<String, dynamic> data,
   )   : songTitle = data['song_title'],
         artist = data['artist'],
@@ -22,11 +22,11 @@ class SongSuggestionBase {
         spaceId = data['space_id'];
 }
 
-class SongSuggestion extends SongSuggestionBase {
+class Suggestion extends SuggestionBase {
   final String id;
   final String profileId;
 
-  SongSuggestion({
+  Suggestion({
     required this.id,
     required super.songTitle,
     required super.artist,
@@ -36,7 +36,7 @@ class SongSuggestion extends SongSuggestionBase {
     required this.profileId,
   });
 
-  SongSuggestion.fromMap(
+  Suggestion.fromMap(
     super.data,
   )   : id = data['id'],
         profileId = data['profile_id'],

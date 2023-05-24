@@ -9,8 +9,6 @@ class DevPage extends StatelessWidget {
 
   Future f() async {
     await SpotifySdk.connectToSpotifyRemote(clientId: "ab59d37825a8489591577d54bb0b352a", redirectUrl: "com.uglyonlytoday.idontlikethesongplayinrn://spotify-login-callback");
-    // SpotifySdk.play(spotifyUri: 'https://open.spotify.com/track/1IdZvb2XK8NmsovQlV6CPn?si=a090ee6ffcf74595');
-    await SpotifySdk.play(spotifyUri: 'spotify:track:7DfFc7a6Rwfi3YQMRbDMau');
   }
 
   @override

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:i_dont_like_the_song_playin_rn/app/data/modules/song_suggestion/model.dart';
+import 'package:i_dont_like_the_song_playin_rn/app/data/modules/suggestion/model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class SongSuggestionItem extends StatelessWidget {
-  final SongSuggestion suggestion;
-  const SongSuggestionItem(this.suggestion, {super.key});
+class SuggestionItem extends StatelessWidget {
+  final Suggestion suggestion;
+  const SuggestionItem(this.suggestion, {super.key});
 
-  Widget othersSongSuggestion() {
+  Widget othersSuggestion() {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -53,7 +53,7 @@ class SongSuggestionItem extends StatelessWidget {
                           suggestion.songTitle,
                           style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                         ),
-                        const SizedBox(height: 4),
+                        const SizedBox(height: 2),
                         Text(
                           overflow: TextOverflow.ellipsis,
                           suggestion.artist,
@@ -72,7 +72,7 @@ class SongSuggestionItem extends StatelessWidget {
     );
   }
 
-  Widget mySongSuggestion() {
+  Widget mySuggestion() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -104,7 +104,7 @@ class SongSuggestionItem extends StatelessWidget {
                         suggestion.songTitle,
                         style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 2),
                       Text(
                         overflow: TextOverflow.ellipsis,
                         suggestion.artist,
@@ -124,9 +124,9 @@ class SongSuggestionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (suggestion.profileId == Supabase.instance.client.auth.currentUser!.id) {
-      return mySongSuggestion();
+      return mySuggestion();
     } else {
-      return othersSongSuggestion();
+      return othersSuggestion();
     }
   }
 }

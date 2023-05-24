@@ -24,14 +24,21 @@ class SpacePage extends GetView<SpacePageController> {
           Expanded(
             child: Stack(
               children: [
-                Obx(
-                  () => ListView(
-                    reverse: true,
-                    padding: const EdgeInsets.only(top: 100),
-                    children: controller.songSuggestionsController.songSuggestions.map((e) => SongSuggestionItem(e)).toList().reversed.toList(),
+                Positioned.directional(
+                  top: 20,
+                  start: 0,
+                  end: 0,
+                  bottom: 0,
+                  textDirection: TextDirection.ltr,
+                  child: Obx(
+                    () => ListView(
+                      reverse: true,
+                      padding: const EdgeInsets.only(top: 140),
+                      children: controller.suggestionsController.suggestions.map((e) => SuggestionItem(e)).toList().reversed.toList(),
+                    ),
                   ),
                 ),
-                Positioned.directional(top: 0, start: 12, end: 12, textDirection: TextDirection.ltr, child: SongIndicator()),
+                Positioned.directional(top: 0, start: 12, end: 12, textDirection: TextDirection.ltr, child: HostSongIndicator()),
               ],
             ),
           ),
