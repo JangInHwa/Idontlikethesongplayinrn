@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/core/enums/controller_state.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/music_player/controller.dart';
+import 'package:i_dont_like_the_song_playin_rn/app/data/modules/space/controller.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/suggestion/model.dart';
-import 'package:i_dont_like_the_song_playin_rn/app/pages/space/controller.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class SongIndicatorBase extends StatelessWidget {
@@ -170,7 +170,7 @@ class SongIndicator extends StatelessWidget {
 
 class HostSongIndicator extends StatelessWidget {
   final MusicPlayerController playerController = Get.find<MusicPlayerController>();
-  final SpacePageController spacePageController = Get.find<SpacePageController>();
+  final SpaceController spaceController = Get.find<SpaceController>();
   HostSongIndicator({super.key});
 
   @override
@@ -193,15 +193,15 @@ class HostSongIndicator extends StatelessWidget {
                   () {
                     playerController.currentSong;
                     return Icon(
-                      color: spacePageController.getPrevSong() == null ? Colors.white38 : Colors.white,
+                      color: spaceController.getPrevSong() == null ? Colors.white38 : Colors.white,
                       PhosphorIcons.fill.caretDoubleLeft,
                     );
                   },
                 ),
                 onTap: () {
-                  Suggestion? prevSong = spacePageController.getPrevSong();
+                  Suggestion? prevSong = spaceController.getPrevSong();
                   if (prevSong != null) {
-                    spacePageController.toPrevSong();
+                    spaceController.toPrevSong();
                   }
                 },
               ),
@@ -226,15 +226,15 @@ class HostSongIndicator extends StatelessWidget {
                   () {
                     playerController.currentSong;
                     return Icon(
-                      color: spacePageController.getNextSong() == null ? Colors.white38 : Colors.white,
+                      color: spaceController.getNextSong() == null ? Colors.white38 : Colors.white,
                       PhosphorIcons.fill.caretDoubleRight,
                     );
                   },
                 ),
                 onTap: () {
-                  Suggestion? nextSong = spacePageController.getNextSong();
+                  Suggestion? nextSong = spaceController.getNextSong();
                   if (nextSong != null) {
-                    spacePageController.toNextSong();
+                    spaceController.toNextSong();
                   }
                 },
               ),

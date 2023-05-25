@@ -58,8 +58,8 @@ class _LogInWithGoogleButtonState extends State<LogInWithGoogleButton> {
             Image.asset('asset/image/google-logo.png', width: 18),
             SizedBox(width: 16),
             Text(
-              'Log In With Google',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              'Continue with Google',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
             ),
           ],
         ),

@@ -6,12 +6,15 @@ import 'package:i_dont_like_the_song_playin_rn/app/data/modules/suggestion/model
 import 'package:spotify_sdk/spotify_sdk.dart';
 
 class MusicPlayerController extends BaseController with GetSingleTickerProviderStateMixin {
-  final Rx<Suggestion?> _currrentPlayingSong = Rx(null);
-  Suggestion? get currentSong => _currrentPlayingSong.value;
+  final Rx<Suggestion?> _currrentSong = Rx(null);
+  Suggestion? get currentSong => _currrentSong.value;
 
   final Rx<Duration?> playbackPosition = Rx(null);
   final Rx<Duration?> playbackDuratoin = Rx(null);
   final Rx<bool> isPlaying = Rx(false);
+
+  bool _isFirstPlaying = true;
+
   late final AnimationController _playBackLineAnimation = AnimationController(vsync: this);
 
   DateTime lastEventOccured = DateTime.now();
@@ -45,15 +48,24 @@ class MusicPlayerController extends BaseController with GetSingleTickerProviderS
 
   Future play(Suggestion song) async {
     await SpotifySdk.play(spotifyUri: 'spotify:track:${song.spotifyId}');
-    _currrentPlayingSong.value = song;
+    _currrentSong.value = song;
   }
 
   Future resume() async {
-    await SpotifySdk.resume();
+    if (_isFirstPlaying) {
+      await SpotifySdk.play(spotifyUri: 'spotify:track:${currentSong!.spotifyId}');
+      _isFirstPlaying = false;
+    } else {
+      await SpotifySdk.resume();
+    }
   }
 
   Future pause() async {
     await SpotifySdk.pause();
+  }
+
+  void setCurrentSong(Suggestion suggestion) {
+    _currrentSong.value = suggestion;
   }
 
   @override

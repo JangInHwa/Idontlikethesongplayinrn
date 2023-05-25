@@ -34,7 +34,7 @@ class SpacePage extends GetView<SpacePageController> {
                     () => ListView(
                       reverse: true,
                       padding: const EdgeInsets.only(top: 140),
-                      children: controller.suggestionsController.suggestions.map((e) => SuggestionItem(e)).toList().reversed.toList(),
+                      children: controller.spaceController.suggestions.map((e) => SuggestionItem(e)).toList().reversed.toList(),
                     ),
                   ),
                 ),
