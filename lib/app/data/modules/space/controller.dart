@@ -44,8 +44,11 @@ class SpaceController extends BaseController {
   final Space space;
   final SuggestionsController _suggestionsController = Get.find<SuggestionsController>();
   final MusicPlayerController _musicPlayerController = Get.find<MusicPlayerController>();
+  final Rx<Suggestion?> _currentPlayingSong = Rx(null);
 
   List<Suggestion> get suggestions => _suggestionsController.suggestions;
+
+  Suggestion? get currentPlayingSong => _currentPlayingSong.value;
 
   SpaceController(
     this.space, {
@@ -55,7 +58,12 @@ class SpaceController extends BaseController {
   @override
   void onInit() {
     init();
+    repository.getCurrentPlayingSuggestionStream(space).listen((data) => onCurrentPlayingSongChanged(data));
     super.onInit();
+  }
+
+  void onCurrentPlayingSongChanged(String? suggestionId) {
+    _currentPlayingSong.value = suggestions.firstWhereOrNull((e) => e.id == suggestionId);
   }
 
   Future init() async {
@@ -67,6 +75,10 @@ class SpaceController extends BaseController {
 
   Future insertSuggestion(SuggestionBase newSuggestion) async {
     await _suggestionsController.insertSuggestion(newSuggestion);
+  }
+
+  Future _updateCurrentPlayingSong() async {
+    await repository.setCurrentPlayingSong(space, _musicPlayerController.currentSong);
   }
 
   Suggestion? getPrevSong() {
@@ -95,6 +107,7 @@ class SpaceController extends BaseController {
     Suggestion? nextSong = getNextSong();
     if (nextSong != null) {
       await _musicPlayerController.play(nextSong);
+      await _updateCurrentPlayingSong();
     }
   }
 
@@ -102,6 +115,7 @@ class SpaceController extends BaseController {
     Suggestion? prevSong = getPrevSong();
     if (prevSong != null) {
       await _musicPlayerController.play(prevSong);
+      await _updateCurrentPlayingSong();
     }
   }
 }
