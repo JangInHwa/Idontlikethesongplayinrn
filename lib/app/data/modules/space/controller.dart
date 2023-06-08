@@ -68,6 +68,15 @@ class SpaceController extends BaseController {
 
   Future init() async {
     await _suggestionsController.init();
+
+    final Stream currentPlayingSongStream = repository.getCurrentPlayingSuggestionStream(space);
+    currentPlayingSongStream.listen((data) => onCurrentPlayingSongChanged(data));
+    await currentPlayingSongStream.first;
+
+    if (currentPlayingSong != null) {
+      _musicPlayerController.setCurrentSong(currentPlayingSong!);
+      return;
+    }
     if (_suggestionsController.suggestions.isNotEmpty) {
       _musicPlayerController.setCurrentSong(_suggestionsController.suggestions.first);
     }
