@@ -4,6 +4,7 @@ import 'package:i_dont_like_the_song_playin_rn/app/pages/space/controller.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/song_indicator.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/suggestion_item.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SpacePage extends GetView<SpacePageController> {
   const SpacePage({super.key});
@@ -38,7 +39,7 @@ class SpacePage extends GetView<SpacePageController> {
                     ),
                   ),
                 ),
-                Positioned.directional(top: 0, start: 12, end: 12, textDirection: TextDirection.ltr, child: HostSongIndicator()),
+                Positioned.directional(top: 0, start: 12, end: 12, textDirection: TextDirection.ltr, child: controller.spaceController.space.creatorId == Supabase.instance.client.auth.currentUser!.id ? HostSongIndicator() : SongIndicator()),
               ],
             ),
           ),

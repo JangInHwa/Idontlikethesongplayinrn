@@ -30,45 +30,48 @@ class SuggestionItem extends StatelessWidget {
             const SizedBox(height: 8),
             GestureDetector(
               onTap: () => Get.bottomSheet(SuggestionDetailSheet(suggestion), enterBottomSheetDuration: Duration(milliseconds: 150), isScrollControlled: true),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(topRight: Radius.circular(16), bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
-                  border: Border.all(
-                    width: 1,
-                    color: const Color(0xFF282828),
-                  ),
-                ),
-                width: 256,
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(6),
-                      child: Image.network(
-                        suggestion.coverImage,
-                        width: 48,
-                      ),
+              child: Obx(
+                () => Container(
+                  decoration: BoxDecoration(
+                    color: spaceController.currentPlayingSong?.id == suggestion.id ? Colors.red : Color(0xFF1B1D22),
+                    borderRadius: const BorderRadius.only(topRight: Radius.circular(16), bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
+                    border: Border.all(
+                      width: 1,
+                      color: const Color(0xFF282828),
                     ),
-                    const SizedBox(width: 16),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            overflow: TextOverflow.ellipsis,
-                            suggestion.songTitle,
-                            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            overflow: TextOverflow.ellipsis,
-                            suggestion.artist,
-                            style: const TextStyle(color: Colors.white60, fontSize: 12),
-                          ),
-                        ],
+                  ),
+                  width: 256,
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: Image.network(
+                          suggestion.coverImage,
+                          width: 48,
+                        ),
                       ),
-                    )
-                  ],
+                      const SizedBox(width: 16),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              overflow: TextOverflow.ellipsis,
+                              suggestion.songTitle,
+                              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              overflow: TextOverflow.ellipsis,
+                              suggestion.artist,
+                              style: const TextStyle(color: Colors.white60, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

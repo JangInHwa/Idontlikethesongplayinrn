@@ -7,8 +7,10 @@ import 'package:i_dont_like_the_song_playin_rn/app/data/modules/suggestion/model
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class SongIndicatorBase extends StatelessWidget {
+  final Suggestion? suggestion;
   final MusicPlayerController playerController = Get.find<MusicPlayerController>();
-  SongIndicatorBase({super.key});
+
+  SongIndicatorBase(this.suggestion, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,23 +18,17 @@ class SongIndicatorBase extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(8),
-          child: Obx(
-            () {
-              if (playerController.currentSong != null) {
-                return Image.network(
-                  playerController.currentSong!.coverImage,
+          child: suggestion != null
+              ? Image.network(
+                  suggestion!.coverImage,
                   width: 72,
                   fit: BoxFit.cover,
-                );
-              } else {
-                return Container(
+                )
+              : Container(
                   width: 72,
                   height: 72,
                   color: Colors.white24,
-                );
-              }
-            },
-          ),
+                ),
         ),
         const SizedBox(width: 16),
         Expanded(
@@ -55,39 +51,27 @@ class SongIndicatorBase extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 2),
-                        Obx(
-                          () {
-                            if (playerController.currentSong != null) {
-                              return Text(
-                                playerController.currentSong!.songTitle,
+                        suggestion != null
+                            ? Text(
+                                suggestion!.songTitle,
                                 style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                 ),
                                 overflow: TextOverflow.fade,
                                 softWrap: false,
-                              );
-                            } else {
-                              return Container(height: 16);
-                            }
-                          },
-                        ),
-                        Obx(
-                          () {
-                            if (playerController.currentSong != null) {
-                              return Text(
-                                playerController.currentSong!.artist,
+                              )
+                            : Container(height: 16),
+                        suggestion != null
+                            ? Text(
+                                suggestion!.artist,
                                 style: const TextStyle(
                                   color: Colors.white60,
                                 ),
                                 overflow: TextOverflow.fade,
                                 softWrap: false,
-                              );
-                            } else {
-                              return Container(height: 17);
-                            }
-                          },
-                        ),
+                              )
+                            : Container(height: 17),
                       ],
                     ),
                   ),
@@ -153,7 +137,8 @@ class PlaybackLine extends StatelessWidget {
 }
 
 class SongIndicator extends StatelessWidget {
-  const SongIndicator({super.key});
+  final SpaceController spaceController = Get.find<SpaceController>();
+  SongIndicator({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -163,7 +148,9 @@ class SongIndicator extends StatelessWidget {
         color: const Color(0xFF2F3239),
       ),
       padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12, right: 20),
-      child: SongIndicatorBase(),
+      child: Obx(
+        () => SongIndicatorBase(spaceController.currentPlayingSong),
+      ),
     );
   }
 }
@@ -183,7 +170,7 @@ class HostSongIndicator extends StatelessWidget {
       padding: const EdgeInsets.only(top: 12, bottom: 16, left: 12, right: 20),
       child: Column(
         children: [
-          SongIndicatorBase(),
+          Obx(() => SongIndicatorBase(playerController.currentSong)),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
