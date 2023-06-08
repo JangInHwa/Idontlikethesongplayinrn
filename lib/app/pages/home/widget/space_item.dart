@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:get/get.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/space/model.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/routes/pages.dart';
@@ -9,7 +10,7 @@ class SpaceItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Bounceable(
       onTap: () => Get.toNamed(Routes.SPACE, arguments: {'space': space}),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
