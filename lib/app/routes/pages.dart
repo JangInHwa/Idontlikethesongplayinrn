@@ -13,9 +13,9 @@ part './routes.dart';
 abstract class AppPages {
   static final pages = [
     GetPage(name: Routes.DEV, page: () => const DevPage()),
-    GetPage(name: Routes.LOGIN, page: () => LogInPage(), binding: LoginPageBinding()),
-    GetPage(name: Routes.HOME, page: () => HomePage(), binding: HomePageBinding()),
-    GetPage(name: Routes.SPACE, page: () => SpacePage(), binding: SpacePageBinding()),
-    GetPage(name: Routes.JOIN, page: () => JoinPage(), binding: JoinPageBinding()),
+    GetPage(name: Routes.LOGIN, page: () => const LogInPage(), binding: LoginPageBinding()),
+    GetPage(name: Routes.HOME, page: () => const HomePage(), binding: HomePageBinding()),
+    GetPage(name: Routes.SPACE, page: () => const SpacePage(), binding: SpacePageBinding()),
+    GetPage(name: Routes.JOIN, page: () => const JoinPage(), binding: JoinPageBinding()),
   ];
 }

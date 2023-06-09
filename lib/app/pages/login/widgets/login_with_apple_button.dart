@@ -52,13 +52,13 @@ class _LogInWithAppleButtonState extends State<LogInWithAppleButton> {
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.white24),
         ),
-        padding: EdgeInsets.symmetric(vertical: 18),
+        padding: const EdgeInsets.symmetric(vertical: 18),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('asset/image/apple-logo.png', width: 18),
-            SizedBox(width: 16),
-            Text(
+            const SizedBox(width: 16),
+            const Text(
               'Continue with Apple',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
             ),

@@ -51,13 +51,13 @@ class _LogInWithGoogleButtonState extends State<LogInWithGoogleButton> {
           color: tapped ? Colors.grey[300] : Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
-        padding: EdgeInsets.symmetric(vertical: 18),
+        padding: const EdgeInsets.symmetric(vertical: 18),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('asset/image/google-logo.png', width: 18),
-            SizedBox(width: 16),
-            Text(
+            const SizedBox(width: 16),
+            const Text(
               'Continue with Google',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
             ),

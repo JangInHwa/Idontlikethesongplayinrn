@@ -29,11 +29,11 @@ class SuggestionItem extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             GestureDetector(
-              onTap: () => Get.bottomSheet(SuggestionDetailSheet(suggestion), enterBottomSheetDuration: Duration(milliseconds: 150), isScrollControlled: true),
+              onTap: () => Get.bottomSheet(SuggestionDetailSheet(suggestion), enterBottomSheetDuration: const Duration(milliseconds: 150), isScrollControlled: true),
               child: Obx(
                 () => Container(
                   decoration: BoxDecoration(
-                    color: spaceController.currentPlayingSong?.id == suggestion.id ? Colors.red : Color(0xFF1B1D22),
+                    color: spaceController.currentPlayingSong?.id == suggestion.id ? Colors.red : const Color(0xFF1B1D22),
                     borderRadius: const BorderRadius.only(topRight: Radius.circular(16), bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
                     border: Border.all(
                       width: 1,
@@ -89,12 +89,12 @@ class SuggestionItem extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 12, bottom: 16),
           child: GestureDetector(
-            onTap: () => Get.bottomSheet(SuggestionDetailSheet(suggestion), enterBottomSheetDuration: Duration(milliseconds: 150), isScrollControlled: true),
+            onTap: () => Get.bottomSheet(SuggestionDetailSheet(suggestion), enterBottomSheetDuration: const Duration(milliseconds: 150), isScrollControlled: true),
             child: Obx(
               () => Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(16), bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
-                  color: spaceController.currentPlayingSong?.id == suggestion.id ? Colors.red : Color(0xFF1B1D22),
+                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16)),
+                  color: spaceController.currentPlayingSong?.id == suggestion.id ? Colors.red : const Color(0xFF1B1D22),
                 ),
                 width: 256,
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),

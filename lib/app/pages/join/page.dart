@@ -44,14 +44,14 @@ class JoinPage extends GetView<JoinPageController> {
             ),
             Obx(() {
               if (controller.noSpaceFoundMessageEnabled.value) {
-                return Text('잘못된 참가 코드입니다', style: TextStyle(color: Color(0xFFE13E3E)));
+                return const Text('잘못된 참가 코드입니다', style: TextStyle(color: Color(0xFFE13E3E)));
               } else {
                 return Container();
               }
             }),
             Obx(() {
               if (controller.alreadyJoinedMessageEnabled.value) {
-                return Text('이미 참가중인 스페이스입니다', style: TextStyle(color: Color(0xFFE13E3E)));
+                return const Text('이미 참가중인 스페이스입니다', style: TextStyle(color: Color(0xFFE13E3E)));
               } else {
                 return Container();
               }

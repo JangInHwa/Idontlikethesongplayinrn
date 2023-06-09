@@ -16,7 +16,7 @@ class HomePage extends GetView<HomePageController> {
       body: SafeArea(
         child: Column(
           children: [
-            Header(),
+            const Header(),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

@@ -29,7 +29,7 @@ class CTAButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CTAButtonBase(
       onTap: onTap,
-      child: Text(
+      child: const Text(
         '참가하기',
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
       ),
@@ -42,7 +42,7 @@ class CTAButtonDisabled extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
+    return const Opacity(
       opacity: 0.3,
       child: CTAButton(),
     );

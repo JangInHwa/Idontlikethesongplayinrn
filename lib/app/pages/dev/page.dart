@@ -23,23 +23,23 @@ class DevPage extends StatelessWidget {
         children: [
           TextButton(
             onPressed: f,
-            child: Text('Hit!!'),
+            child: const Text('Hit!!'),
           ),
           TextButton(
             onPressed: () => Get.toNamed(Routes.LOGIN),
-            child: Text(Routes.LOGIN),
+            child: const Text(Routes.LOGIN),
           ),
           TextButton(
             onPressed: () => Supabase.instance.client.auth.signOut(),
-            child: Text('logout'),
+            child: const Text('logout'),
           ),
           TextButton(
             onPressed: () => Get.toNamed(Routes.HOME),
-            child: Text(Routes.HOME),
+            child: const Text(Routes.HOME),
           ),
           TextButton(
             onPressed: () => Get.toNamed(Routes.SPACE),
-            child: Text(Routes.SPACE),
+            child: const Text(Routes.SPACE),
           ),
         ],
       ),
