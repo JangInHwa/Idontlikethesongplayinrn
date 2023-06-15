@@ -41,6 +41,10 @@ class DevPage extends StatelessWidget {
             onPressed: () => Get.toNamed(Routes.SPACE),
             child: const Text(Routes.SPACE),
           ),
+          TextButton(
+            onPressed: () => Get.toNamed(Routes.SETPROFILEID),
+            child: const Text(Routes.SETPROFILEID),
+          ),
         ],
       ),
     );

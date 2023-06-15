@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:i_dont_like_the_song_playin_rn/app/data/modules/profile/controller.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/suggestion/model.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/space/controller.dart';
 import 'package:i_dont_like_the_song_playin_rn/app/data/modules/spotify_song/model.dart';
@@ -8,6 +9,7 @@ import 'package:i_dont_like_the_song_playin_rn/app/pages/space/widgets/song_sele
 
 class SpacePageController extends GetxController {
   SpaceController spaceController = Get.find<SpaceController>();
+  ProfileController profileController = Get.find<ProfileController>();
 
   Future openSongSelectSheet() async {
     HapticFeedback.selectionClick();
@@ -34,6 +36,7 @@ class SpacePageController extends GetxController {
         songTitle: selectedSong.name,
         spaceId: spaceController.space.id,
         spotifyId: selectedSong.spotifyId,
+        suggestor: profileController.profile!,
       ),
     );
   }

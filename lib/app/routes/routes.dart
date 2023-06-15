@@ -8,4 +8,5 @@ abstract class Routes {
   static const LOGIN = '/login';
   static const SPACE = '/space';
   static const JOIN = '/join';
+  static const SETPROFILEID = '/set-profile-id';
 }

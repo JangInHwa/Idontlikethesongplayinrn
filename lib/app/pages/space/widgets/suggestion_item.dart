@@ -15,14 +15,14 @@ class SuggestionItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(width: 12),
-        const CircleAvatar(radius: 14),
+        const CircleAvatar(radius: 14, backgroundColor: Colors.white24),
         const SizedBox(width: 8),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'mingsung',
-              style: TextStyle(
+            Text(
+              suggestion.suggestor.profileId!,
+              style: const TextStyle(
                 color: Colors.white54,
                 fontSize: 12,
               ),
