@@ -3,8 +3,8 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class SongSearchTextField extends StatelessWidget {
   final TextEditingController? controller;
-  final void Function(String)? onSubmitted;
-  const SongSearchTextField({super.key, this.controller, this.onSubmitted});
+  final void Function(String)? onChanged;
+  const SongSearchTextField({super.key, this.controller, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class SongSearchTextField extends StatelessWidget {
             child: TextField(
               autofocus: true,
               controller: controller,
-              onSubmitted: onSubmitted,
+              onChanged: onChanged,
               style: const TextStyle(color: Colors.white, fontSize: 16),
               cursorColor: Colors.white,
               decoration: const InputDecoration(

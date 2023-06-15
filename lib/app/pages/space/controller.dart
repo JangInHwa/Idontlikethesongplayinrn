@@ -13,7 +13,7 @@ class SpacePageController extends GetxController {
 
   Future openSongSelectSheet() async {
     HapticFeedback.selectionClick();
-    SongSelectSheetController controller = SongSelectSheetController();
+    SongSelectSheetController controller = Get.find<SongSelectSheetController>();
     SpotifySong? selectedSong = await showModalBottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),

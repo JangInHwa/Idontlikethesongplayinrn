@@ -10,7 +10,7 @@ class SongSelectSheet extends StatelessWidget {
   SongSelectSheet({
     super.key,
     SongSelectSheetController? controller,
-  }) : controller = controller ?? SongSelectSheetController();
+  }) : controller = controller ?? Get.find<SongSelectSheetController>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +37,8 @@ class SongSelectSheet extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 10),
                 child: SongSearchTextField(
+                  onChanged: (p0) => controller.onTextChanged(),
                   controller: controller.searchTextFieldController,
-                  onSubmitted: controller.searchSpotify,
                 ),
               ),
               Expanded(
@@ -76,9 +76,26 @@ class SongSelectSheetController extends GetxController {
   SpotifyRepository spotifyRepository = SpotifyRepository();
   final Rx<List<SpotifySong>> _songList = Rx([]);
   List<SpotifySong> get songList => _songList.value;
+  Rx<String> q = Rx('');
 
-  Future searchSpotify(String keyword) async {
-    _songList.value = await spotifyRepository.searchSong(keyword);
+  @override
+  void onInit() {
+    super.onInit();
+    interval(q, (callback) => searchSpotify(), time: const Duration(milliseconds: 500));
+  }
+
+  void onTextChanged() {
+    q.value = searchTextFieldController.text;
+    if (q.value == '') {
+      _songList.value = [];
+    }
+  }
+
+  Future searchSpotify() async {
+    if (q.value == '') {
+      return;
+    }
+    _songList.value = await spotifyRepository.searchSong(q.value);
     _songList.refresh();
   }
 }
